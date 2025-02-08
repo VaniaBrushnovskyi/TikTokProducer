@@ -1,0 +1,144 @@
+@media (max-width: 370px) {
+    .wrapper {
+        max-width: 370px;
+    }
+//Header s1
+#sakura {
+    height: 843px;
+}
+.mobile-menu {
+    height: 290px;
+    .menu-list {
+        gap: 20px;
+    }
+    .menu-social img {
+        width: 26px;
+    }
+}
+//content
+.header__content {
+    gap: 35px;
+}
+.header__content_text {
+    margin-bottom: 40px;
+    &-protiktok {
+        font-size: 40px;
+    }
+    &-second {
+        .text-second_br-1 {
+            display: none;
+        }
+        .text-second_br-2 {
+            display: none;
+        }
+        font-size: 18px;
+    }
+    h1 {
+        margin-bottom: 15px;
+        line-height: 17px;
+    }
+    p {
+        width: 320px;
+        font-size: 15px;
+        line-height: 22px;
+        margin-bottom: 30px;
+    }
+    &-start {
+        font-size: 13px;
+        gap: 10px;
+    }
+    &-btn {
+        width: 185px;
+        height: 40px;
+        font-size: 13px;
+        letter-spacing: 3px;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+    }
+}
+
+.header__content-photo {
+    .header__content-img {
+        height: 350px;
+        order: 1;
+    }
+}
+
+//SECTION 3
+.s3 {
+    padding: 0 8px;
+    gap: 40px;
+}
+.s3__content {
+    margin: 0 0 155px 25px;
+    gap: 15px;
+}
+.s3__content_numbers {
+    span {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    &-1 {
+        top: -280px;
+    }
+    &-2 {
+        top: -79px;
+    }
+    &-3 {
+        top: 125px;
+    }
+    hr {
+        top: -255px;
+        right: 17px;
+    }
+}
+.s3__content_text {
+    gap: 40px;
+    .inner__year  {
+        font-size: 17px;
+    }
+    .inner__text {
+        font-size: 14px;
+    }
+}
+
+//SECTION 5
+.s5__content {
+    gap: 26px;
+}
+.s5__content {
+    &_advice, &_mentoring, &_course {
+        padding: 0 20px;
+        h4 {
+            font-size: 20px;
+        }
+        .price-grn {
+            font-size: 20px;
+        }
+        a {
+            font-size: 15px;
+            padding: 0.5em 3.1em;
+        }
+    }
+}
+.s5__content_price-block {
+    width: 95%;
+    li {
+        margin-bottom: 12px;
+    }
+}
+
+//SECTION 6
+.s6__content {
+    details {
+        width: 95%;
+    }
+}
+
+
+
+
+
+
+}

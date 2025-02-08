@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/header-icon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/header-icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/header-icon/favicon-16x16.png">
+    <link rel="manifest" href="icons/header-icon/site.webmanifest">
+
+    <title>PRO TIKTOK | курс як знімати відео на мільйон⭐⭐⭐ переглядів, навчу тебе знімати відео на мільйон переглядів✅ | Brushnovskaya</title>
+    <meta name="description" content="Курс по TikTok✍ продюсер, маркетолог який запускає бізнеси у ТікТок✔️ Більше 50 запусків бізнесу ТікТок під час війни✅ Консультація⭐ Менторство⭐ Наставництво⭐">
+    <meta name="keywords" content="Курс ТікТок, Як знімати відео на мільйон у ТікТок, Продюсер менеджер ТікТок, консультація ТікТок, менторство наставництво ТікТок, бізнес у ТікТок"> 
+    <meta property="og:title" content="Курс 'PRO TIKTOK'">
+    <meta property="og:locale" content="uk_UA">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="НАЗВА САЙТА (brushnovskaya.com.ua)?">
+    <meta property="og:description" content="Як знімати відео на мільйон переглядів у ТікТок✔️ Консультація⭐ Менторство⭐ Наставництво⭐">
+    <meta property="og:image" content="https://ibb.co/jMLLPcq">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="400">
+    <meta property="og:image:height" content="300">
+    <meta name="format-detection" content="telephone=no">
+
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header s1">
+<!-- Header -->
+            <div class="header__anim-bg">
+                <canvas id="sakura"></canvas>
+                <div class="btnbg">
+                </div>
+                <!-- sakura shader -->
+                <script id="sakura_point_vsh" type="x-shader/x_vertex">
+                uniform mat4 uProjection;
+                uniform mat4 uModelview;
+                uniform vec3 uResolution;
+                uniform vec3 uOffset;
+                uniform vec3 uDOF;  //x:focus distance, y:focus radius, z:max radius
+                uniform vec3 uFade; //x:start distance, y:half distance, z:near fade start
+    
+                attribute vec3 aPosition;
+                attribute vec3 aEuler;
+                attribute vec2 aMisc; //x:size, y:fade
+    
+                varying vec3 pposition;
+                varying float psize;
+                varying float palpha;
+                varying float pdist;
+    
+                //varying mat3 rotMat;
+                varying vec3 normX;
+                varying vec3 normY;
+                varying vec3 normZ;
+                varying vec3 normal;
+    
+                varying float diffuse;
+                varying float specular;
+                varying float rstop;
+                varying float distancefade;
+    
+                void main(void) {
+                    // Projection is based on vertical angle
+                    vec4 pos = uModelview * vec4(aPosition + uOffset, 1.0);
+                    gl_Position = uProjection * pos;
+                    gl_PointSize = aMisc.x * uProjection[1][1] / -pos.z * uResolution.y * 0.5;
+                    
+                    pposition = pos.xyz;
+                    psize = aMisc.x;
+                    pdist = length(pos.xyz);
+                    palpha = smoothstep(0.0, 1.0, (pdist - 0.1) / uFade.z);
+                    
+                    vec3 elrsn = sin(aEuler);
+                    vec3 elrcs = cos(aEuler);
+                    mat3 rotx = mat3(
+                        1.0, 0.0, 0.0,
+                        0.0, elrcs.x, elrsn.x,
+                        0.0, -elrsn.x, elrcs.x
+                    );
+                    mat3 roty = mat3(
+                        elrcs.y, 0.0, -elrsn.y,
+                        0.0, 1.0, 0.0,
+                        elrsn.y, 0.0, elrcs.y
+                    );
+                    mat3 rotz = mat3(
+                        elrcs.z, elrsn.z, 0.0, 
+                        -elrsn.z, elrcs.z, 0.0,
+                        0.0, 0.0, 1.0
+                    );
+                    mat3 rotmat = rotx * roty * rotz;
+                    normal = rotmat[2];
+                    
+                    mat3 trrotm = mat3(
+                        rotmat[0][0], rotmat[1][0], rotmat[2][0],
+                        rotmat[0][1], rotmat[1][1], rotmat[2][1],
+                        rotmat[0][2], rotmat[1][2], rotmat[2][2]
+                    );
+                    normX = trrotm[0];
+                    normY = trrotm[1];
+                    normZ = trrotm[2];
+                    
+                    const vec3 lit = vec3(0.6917144638660746, 0.6917144638660746, -0.20751433915982237);
+                    
+                    float tmpdfs = dot(lit, normal);
+                    if(tmpdfs < 0.0) {
+                        normal = -normal;
+                        tmpdfs = dot(lit, normal);
+                    }
+                    diffuse = 0.4 + tmpdfs;
+                    
+                    vec3 eyev = normalize(-pos.xyz);
+                    if(dot(eyev, normal) > 0.0) {
+                        vec3 hv = normalize(eyev + lit);
+                        specular = pow(max(dot(hv, normal), 0.0), 20.0);
+                    }
+                    else {
+                        specular = 0.0;
+                    }
+                    
+                    rstop = clamp((abs(pdist - uDOF.x) - uDOF.y) / uDOF.z, 0.0, 1.0);
+                    rstop = pow(rstop, 0.5);
+                    //-0.69315 = ln(0.5)
+                    distancefade = min(1.0, exp((uFade.x - pdist) * 0.69315 / uFade.y));
+                }
+                </script>
+                <script id="sakura_point_fsh" type="x-shader/x_fragment">
+                #ifdef GL_ES
+                //precision mediump float;
+                precision highp float;
+                #endif
+    
+                uniform vec3 uDOF;  //x:focus distance, y:focus radius, z:max radius
+                uniform vec3 uFade; //x:start distance, y:half distance, z:near fade start
+    
+                const vec3 fadeCol = vec3(0.08, 0.03, 0.06);
+    
+                varying vec3 pposition;
+                varying float psize;
+                varying float palpha;
+                varying float pdist;
+    
+                //varying mat3 rotMat;
+                varying vec3 normX;
+                varying vec3 normY;
+                varying vec3 normZ;
+                varying vec3 normal;
+    
+                varying float diffuse;
+                varying float specular;
+                varying float rstop;
+                varying float distancefade;
+    
+                float ellipse(vec2 p, vec2 o, vec2 r) {
+                    vec2 lp = (p - o) / r;
+                    return length(lp) - 1.0;
+                }
+    
+                void main(void) {
+                    vec3 p = vec3(gl_PointCoord - vec2(0.5, 0.5), 0.0) * 2.0;
+                    vec3 d = vec3(0.0, 0.0, -1.0);
+                    float nd = normZ.z; //dot(-normZ, d);
+                    if(abs(nd) < 0.0001) discard;
+                    
+                    float np = dot(normZ, p);
+                    vec3 tp = p + d * np / nd;
+                    vec2 coord = vec2(dot(normX, tp), dot(normY, tp));
+                    
+                    //angle = 15 degree
+                    const float flwrsn = 0.258819045102521;
+                    const float flwrcs = 0.965925826289068;
+                    mat2 flwrm = mat2(flwrcs, -flwrsn, flwrsn, flwrcs);
+                    vec2 flwrp = vec2(abs(coord.x), coord.y) * flwrm;
+                    
+                    float r;
+                    if(flwrp.x < 0.0) {
+                        r = ellipse(flwrp, vec2(0.065, 0.024) * 0.5, vec2(0.36, 0.96) * 0.5);
+                    }
+                    else {
+                        r = ellipse(flwrp, vec2(0.065, 0.024) * 0.5, vec2(0.58, 0.96) * 0.5);
+                    }
+                    
+                    if(r > rstop) discard;
+                    
+                    vec3 col = mix(vec3(1.0, 0.8, 0.75), vec3(1.0, 0.9, 0.87), r);
+                    float grady = mix(0.0, 1.0, pow(coord.y * 0.5 + 0.5, 0.35));
+                    col *= vec3(1.0, grady, grady);
+                    col *= mix(0.8, 1.0, pow(abs(coord.x), 0.3));
+                    col = col * diffuse + specular;
+                    
+                    col = mix(fadeCol, col, distancefade);
+                    
+                    float alpha = (rstop > 0.001)? (0.5 - r / (rstop * 2.0)) : 1.0;
+                    alpha = smoothstep(0.0, 1.0, alpha) * palpha;
+                    
+                    gl_FragColor = vec4(col * 0.5, alpha);
+                }
+                </script>
+                <!-- effects -->
+                <script id="fx_common_vsh" type="x-shader/x_vertex">
+                uniform vec3 uResolution;
+                attribute vec2 aPosition;
+    
+                varying vec2 texCoord;
+                varying vec2 screenCoord;
+    
+                void main(void) {
+                    gl_Position = vec4(aPosition, 0.0, 1.0);
+                    texCoord = aPosition.xy * 0.5 + vec2(0.5, 0.5);
+                    screenCoord = aPosition.xy * vec2(uResolution.z, 1.0);
+                }
+                </script>
+                <script id="bg_fsh" type="x-shader/x_fragment">
+                #ifdef GL_ES
+                //precision mediump float;
+                precision highp float;
+                #endif
+    
+                uniform vec2 uTimes;
+    
+                varying vec2 texCoord;
+                varying vec2 screenCoord;
+    
+                void main(void) {
+                    vec3 col;
+                    float c;
+                    vec2 tmpv = texCoord * vec2(0.8, 1.0) - vec2(0.95, 1.0);
+                    c = exp(-pow(length(tmpv) * 1.8, 2.0));
+                    col = mix(vec3(0.02, 0.0, 0.03), vec3(0.96, 0.98, 1.0) * 1.5, c);
+                    gl_FragColor = vec4(col * 0.5, 1.0);
+                }
+                </script>
+                <script id="fx_brightbuf_fsh" type="x-shader/x_fragment">
+                #ifdef GL_ES
+                //precision mediump float;
+                precision highp float;
+                #endif
+                uniform sampler2D uSrc;
+                uniform vec2 uDelta;
+    
+                varying vec2 texCoord;
+                varying vec2 screenCoord;
+    
+                void main(void) {
+                    vec4 col = texture2D(uSrc, texCoord);
+                    gl_FragColor = vec4(col.rgb * 2.0 - vec3(0.5), 1.0);
+                }
+                </script>
+                <script id="fx_dirblur_r4_fsh" type="x-shader/x_fragment">
+                #ifdef GL_ES
+                //precision mediump float;
+                precision highp float;
+                #endif
+                uniform sampler2D uSrc;
+                uniform vec2 uDelta;
+                uniform vec4 uBlurDir; //dir(x, y), stride(z, w)
+    
+                varying vec2 texCoord;
+                varying vec2 screenCoord;
+    
+                void main(void) {
+                    vec4 col = texture2D(uSrc, texCoord);
+                    col = col + texture2D(uSrc, texCoord + uBlurDir.xy * uDelta);
+                    col = col + texture2D(uSrc, texCoord - uBlurDir.xy * uDelta);
+                    col = col + texture2D(uSrc, texCoord + (uBlurDir.xy + uBlurDir.zw) * uDelta);
+                    col = col + texture2D(uSrc, texCoord - (uBlurDir.xy + uBlurDir.zw) * uDelta);
+                    gl_FragColor = col / 5.0;
+                }
+                </script>
+                <!-- effect fragment shader template -->
+                <script id="fx_common_fsh" type="x-shader/x_fragment">
+                #ifdef GL_ES
+                //precision mediump float;
+                precision highp float;
+                #endif
+                uniform sampler2D uSrc;
+                uniform vec2 uDelta;
+    
+                varying vec2 texCoord;
+                varying vec2 screenCoord;
+    
+                void main(void) {
+                    gl_FragColor = texture2D(uSrc, texCoord);
+                }
+                </script>
+                <!-- post processing -->
+                <script id="pp_final_vsh" type="x-shader/x_vertex">
+                uniform vec3 uResolution;
+                attribute vec2 aPosition;
+                varying vec2 texCoord;
+                varying vec2 screenCoord;
+                void main(void) {
+                    gl_Position = vec4(aPosition, 0.0, 1.0);
+                    texCoord = aPosition.xy * 0.5 + vec2(0.5, 0.5);
+                    screenCoord = aPosition.xy * vec2(uResolution.z, 1.0);
+                }
+                </script>
+                <script id="pp_final_fsh" type="x-shader/x_fragment">
+                #ifdef GL_ES
+                //precision mediump float;
+                precision highp float;
+                #endif
+                uniform sampler2D uSrc;
+                uniform sampler2D uBloom;
+                uniform vec2 uDelta;
+                varying vec2 texCoord;
+                varying vec2 screenCoord;
+                void main(void) {
+                    vec4 srccol = texture2D(uSrc, texCoord) * 2.0;
+                    vec4 bloomcol = texture2D(uBloom, texCoord);
+                    vec4 col;
+                    col = srccol + bloomcol * (vec4(1.0) + srccol);
+                    col *= smoothstep(1.0, 0.0, pow(length((texCoord - vec2(0.5)) * 2.0), 1.2) * 0.5);
+                    col = pow(col, vec4(0.45454545454545)); //(1.0 / 2.2)
+                    
+                    gl_FragColor = vec4(col.rgb, 1.0);
+                    gl_FragColor.a = 1.0;
+                }
+                </script>
+            </div>
+            <div class="header__nav">
+                <div class="header__nav_burger-menu">
+                    <div class="header__burger_btn">
+                        <button id="burger-btn" class="burger-btn">
+                            <span></span>
+                        </button>
+                    </div>
+                    <a class="header__nav_logo" href="">
+                        <span class="header__nav_logo-pro">PRO</span>
+                        <span>TIKTOK</span>
+                    </a>
+                   <ul class="menu-list">
+                        <li>
+                            <a class="menu-list__animations" href="#About-course">
+                                <span class="actual-text">&nbsp;ПРО&nbsp;КУРС&nbsp;</span>
+                                <span aria-hidden="true" class="hover-text">&nbsp;ПРО&nbsp;КУРС&nbsp;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu-list__animations" href="#MyWay">
+                                <span class="actual-text">&nbsp;МІЙ&nbsp;ШЛЯХ&nbsp;</span>
+                                <span aria-hidden="true" class="hover-text">&nbsp;МІЙ&nbsp;ШЛЯХ&nbsp;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu-list__animations" href="#Price">
+                                <span class="actual-text">&nbsp;ПРАЙС&nbsp;</span>
+                                <span aria-hidden="true" class="hover-text">&nbsp;ПРАЙС&nbsp;</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="menu-list__animations" href="#Keys">
+                                <span class="actual-text">&nbsp;КЕЙСИ&nbsp;</span>
+                                <span aria-hidden="true" class="hover-text">&nbsp;КЕЙСИ&nbsp;</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="menu-social">
+                        <a class="instagram-link" href="https://www.instagram.com/brushnovskaya/" target="_blank">
+                            <img class="inst-icon" src="./icons/instagram.svg" alt="instagram" title="Мій інстаграм">
+                        </a>
+                        <a class="telegram-link" href="https://t.me/brushnovskaya" target="_blank">
+                            <img class="tg-icon" src="./icons/telegram.svg" alt="telegram" title="Мій телеграм">
+                        </a>
+                    </div>
+<!-- mobile menu -->
+                    <div class="mobile-menu">
+                        <ul class="menu-list">
+                            <li><a href="#About-course">ПРО КУРС</a></li>
+                            <li><a href="#MyWay">МІЙ ШЛЯХ</a></li>
+                            <li><a href="#Price">ПРАЙС</a></li>
+                            <li><a href="#Keys">КЕЙСИ</a></li>
+                        </ul>
+                        <div class="menu-social">
+                            <a class="instagram-link" href="https://www.instagram.com/brushnovskaya/" target="_blank">
+                                <img class="inst-icon" src="./icons/instagram.svg" alt="instagram" title="Мій інстаграм">
+                            </a>
+                            <a class="telegram-link" href="https://t.me/brushnovskaya" target="_blank">
+                                <img class="tg-icon" src="./icons/telegram.svg" alt="telegram" title="Мій телеграм">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header__content">
+                <div class="header__content_text">
+                    <h1>
+                        <span class="header__content_text-protiktok">
+                        <span class="header__content_text-pro">PRO
+                        </span>TIK TOK 
+                        </span>
+                        <br><span class="header__content_text-second">як знімати відео 
+                        <br class="text-second_br-1">на мільйон 
+                        <br class="text-second_br-2">переглядів</span>
+                    </h1>
+                    <p>Я - Катя і я ТІК ТОК продюсер/маркетолог 
+                        який запускає бізнеси в стратосферу. Більше 50-ти запусків бізнесу та 15-ти діючих проектів у Тік Ток під час війни.</p>
+                    <div class="header__content_text-start">
+                        <span>старт курсу
+                            <br>
+                            1 липня
+                        </span>
+                        <a class="header__content_text-btn"     
+                        href="#Price">ЗАПИСАТИСЯ</a>
+                    </div>
+                    <a class="ask-me" href="https://t.me/lolopidze" target="_blank">
+                        <div class="svg-wrapper-1">
+                          <div class="svg-wrapper">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              width="24"
+                              height="24"
+                            >
+                              <path fill="none" d="M0 0h24v24H0z"></path>
+                              <path
+                                fill="currentColor"
+                                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                              ></path>
+                            </svg>
+                          </div>
+                        </div>
+                        <span>Задай питання</span>
+                    </a>
+                </div>
+                <div class="header__content-photo">
+                      <img class="header__content-img" src="./img/IMG_02601.png" alt="right-photo">
+                </div>
+            </div>
+            <div class="header__footer"></div>
+        </header>
+<!-- Main-->        
+        <main class="main-content">
+            <section class="s2">
+                <a name="About-course"></a>
+                <div class="s2__inner_top">
+                    <h2><span>ПРО</span> КУРС</h2>
+                    <h3>Навчу тебе знімати відео понад 
+                        <span>62 000 000</span>
+                        переглядів</h3>
+                </div>
+                <div class="s2__inner_bottom">
+                    <div class="s2__inner_bottom-block1">
+                        <img src="./icons/Icon-Papka.svg" alt="block1">
+                        <h4>Програма курсу</h4>
+                        <p>Вас очікуватиме, канал з контентом, в який входитиме:
+                            <br>Декілька відео уроків. Корисні додатки, сайти, джерела.
+                            <br>Презентація та мій нагляд над кожним.
+                            <br>Продовж певного періода часу, практична робота з реальними клієнтами
+                        </p>
+                        <a href="#program-cource"><i>Детальніше</i></a>
+                    </div>
+                    <div class="s2__inner_bottom-block2">
+                        <img src="./icons/Icon-CAMERA.svg" alt="block2">
+                        <h4>Для кого підійде</h4>
+                        <p>Ви юзер ТікТок який не створював контент
+                            <br>Власники бізнесу які хочуть збільшити впізнаваність бренду і збільшити продажі та ефективно перетягувати аудиторію з ТікТок в Інстраграм.
+                            <br>SMM спеціалісти, які вміють створювати контент, але хочуть підняти свій рівень та результати в ТікТок.
+                        </p>
+                    </div>
+                    <div class="s2__inner_bottom-block3">
+                        <img src="./icons/Icon-HANDandMONEY.svg" alt="block3">
+                        <h4>Що ви отримаєте</h4>
+                        <p>Детальну інструкцію по користуванню ТікТок 
+                            і його алгоритмами. 
+                            <br>Дізнаєтесь як створити відео на мільйон переглядів. <br>Навчитесь створювати стратегію під кожний проект, щоб досягати найкращих результатів.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="s3">
+                <video autoplay muted playsinline loop src="./video/1118349_4k_Magic_Cosmos_1920x1080.mp4"></video>
+                <a name="MyWay"></a>
+                <div class="s3__top-gradient"></div>
+                <h2 class="s3__title"><span>МІЙ </span>ШЛЯХ</h2>
+                <div class="s3__content">
+                    <div class="s3__content_numbers">
+                        <span class="s3__content_numbers-1">1</span>
+                        <span class="s3__content_numbers-2">2</span>
+                        <span class="s3__content_numbers-3">3</span>
+                        <hr>
+                    </div>
+                    <div class="s3__content_text">
+                        <ul>
+                            <li class="inner__year">2019 р.</li>
+                            <li class="inner__text">Створюю особисту сторінку в ТікТок. Тема якого "МАМСЬКИЙ ГУМОР". 
+                                <br class="s3__content_text-br">На той момент не існувало курсів та експертів по ТікТок. 
+                                <br class="s3__content_text-br">Але мені вдалося розвинути свою сторінку до мільйонних переглядів інтуітивно</li>
+                        </ul>
+                        <ul>
+                            <li class="inner__year">2022 р.</li>
+                            <li class="inner__text">В цей момент я зрозуміла алгоритми ТікТок і навчилася знімати відео на мільйони і отримала свого першого клієнта. 
+                                <br class="s3__content_text-br">В перший місяць роботи ми отримуємо перший мільйон переглядів
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="inner__year">2024 p.</li>
+                            <li class="inner__text">Ведення 11-ти проектів в одночас. Команда з 6 людей.
+                                <br class="s3__content_text-br">Розвиваємо бізнес сторінки у ТікТок, робимо рекордні продажі через платформу ТікТок.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="s3__bottom-gradient"></div>
+                <img class="s3__bg-2" src="./img/s3_bg.svg" alt="s3__bg-2">
+                <img class="s3__bg-3" src="./img/s3_bg.svg" alt="s3__bg-2">
+                <img class="s3__bg-4" src="./img/s3_bg.svg" alt="s3__bg-2">
+            </section>
+            <section class="s4">
+                <img class="s4__bg" src="./img/s4-bg.jpg" alt="s4-bg">
+                <div class="s4__top-gradient"></div>
+                <a name="Keys"></a>
+                <div class="s4__title">
+                    <h2>КЕЙСИ</h2>
+                </div>
+                <div class="s4__content">
+                    <div class="s4__content_keys">
+                        <div class="s4__content_keys-salonkrasy">
+                            <div class="salonkrsay-text">
+                                <h4><span>Ніша:</span> Салон краси</h4>
+                                <hr>
+                                <p>Створили акаунт з нуля і перші 4 відео   
+                                    залетіли на мільйонні перегляди. 
+                                    <br>Тим самим набравши аудиторію 7000 підписників у перші 3 дні
+                                    і 20к за півтора місяці
+                                </p>
+                            </div>
+                            <img src="./img/s4_salonkrasy.png" alt="salonkrasy">
+                        </div>
+                        <div class="s4__content_keys-dino">
+                            <div class="dino-text">
+                                <h4><span>Ніша:</span> Магазин дитячого одягу</h4>
+                                <p>Стабільно високі перегляди. Стабільний 
+                                    клієнт з стабільними продажами. 
+                                    <br>І ще трішки стабільності
+                                </p>
+                            </div>
+                            <img src="./img/s4_dino.png" alt="dino">
+                        </div>
+                        <div class="s4__content_keys-fitness">
+                            <div class="fitness-text">
+                                <h4><span>Ніша:</span> Фітнес тренер, нутриціолог</h4>
+                                <p>В продовж співпраці, приріст підписників 
+                                    понад 15000.
+                                    <br>Ще хотяби одне речення
+                                </p>
+                            </div>
+                            <img src="./img/s4_fitness.png" alt="fitness">
+                        </div>                        
+                        <div class="s4__content_keys-nikaprofshop">
+                            <div class="nikaprofshop-text">
+                                <h4><span>Ніша:</span> Магазин проф.косметики</h4>
+                                <p>У перший уїк-енд зробили 2000 
+                                    підписників.
+                                    <br>Стабільні перегляди, стабільні продажі
+                                </p>
+                            </div>
+                            <img src="./img/s4_nikaprofshop.png" alt="nikaprofshop">
+                        </div>
+                        <div class="s4__content_keys-vsivbrani">
+                            <div class="vsivbrani-text">
+                                <h4><span>Ніша:</span> Магазин жіночого одягу</h4>
+                                <p>15,700 підписників за 2,5 міс. 
+                                    <br>+20000 підписників в інстаграм.
+                                </p>
+                            </div>
+                            <img src="./img/s4_vsivbrani.png" alt="vsivbrani">
+                        </div>
+                        <div class="s4__content_keys-airtouch">
+                            <div class="airtouch-text">
+                                <h4><span>Ніша:</span> Майстер/перукар air touch</h4>
+                                <p>Зробили: більше ніж 100 проданих онлайн 
+                                    курсів
+                                    підвищили у 3 рази кількість проданих боксів з доглядом
+                                    та збільшили у 2 рази продаж оффлайн інтесивів
+                                    приріст (+20000 підписників B insta)
+                                </p>
+                            </div>
+                            <img src="./img/s4_airtouch.png" alt="airtouch">
+                        </div>
+                    </div>
+                </div>
+                <div class="s4__bottom-gradient"></div>
+            </section>
+            <section class="s5">
+                <a name="Price"></a>
+                <h2>ПРАЙС</h2>
+                <div class="s5__content">
+                    <div class="s5__content_advice  
+                        s5__content_price-block">
+                        <h4>КОНСУЛЬТАЦІЯ</h4>
+                        <ul>
+                            <li>&#x2714
+                                <div>Розбір вашого акаунту</div>
+                            </li>
+                            <li> &#x2714 
+                                <div>Розберемо роботу ТікТоку
+                                    <i>(налаштування, тренди, правила, фішки, аналіз конкурентів)</i></div>
+                            </li>
+                            <li> &#x2714
+                                <div>
+                                    Складемо приблизний сценарій для вашої ніші
+                                </div>
+                            </li>
+                            <li> &#x2714
+                                <div>
+                                    Відповім на ваші запитання
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="price-grn">2500 грн</div>
+                        <a href="" data-button target="_blank">Сплатити</a>
+                    </div>
+                    <div class="s5__content_mentoring s5__content_price-block">
+                        <h4>МЕНТОРСТВО</h4>
+                        <ul>
+                            <li> &#x2714
+                                <div>4 зідзвони <i>(зустрічі)</i></div>
+                            </li>
+                            <li> &#x2714
+                                <div>Розбираємо роботу ТікТоку
+                                </div>
+                            </li>
+                            <li> &#x2714
+                                <div>Вчу писати сценарій та складати контент</div>
+                            </li>
+                            <li> &#x2714
+                                <div>Супровід на протязі 2 місяці</div>
+                            </li>
+                        </ul>
+                        <div class="price-grn">4500 грн</div>
+                        <a href="" data-button target="_blank">Сплатити</a>
+                    </div>
+                    <div class="s5__content_course s5__content_price-block">
+                        <h4>КУРС</h4>
+                        <ul>
+                            <li> &#x2714
+                                <div>1 МОДУЛЬ
+                                    <i>(початок роботи в ТікТок і як він працює)</i>
+                                </div>
+                            </li>
+                            <li> &#x2714
+                                <div>2 МОДУЛЬ
+                                    <i>(аналіз ЦА та статистика, стратегія, контент)</i>
+                                </div>
+                            </li>
+                            <li> &#x2714
+                                <div>3 МОДУЛЬ
+                                    <i>(як побудувати роботу з замовником)</i>
+                                </div>
+                                <a class="s5__content_course-detail" href="#program-cource">Детальніше тут..</a>
+                            </li>
+                        </ul>
+                        <div class="price-grn">5500 грн</div>
+                        <a class="s5__content_course-pay" href="" data-button target="_blank">Сплатити</a>
+                    </div>
+                </div>
+                <div class="s5__footer">при оплаті EURO або USD картками йтиме конвертація у гривню згідно з тарифами вашого банку
+                    <span>
+                        ** ЗВЕРНІТЬ УВАГУ! КУРС НЕ ДОСТУПНИЙ РЕЗИДЕНТАМ РФ І РБ! **
+                    </span>
+                </div>
+            </section>
+            <section class="s6">
+                <a name="program-cource"></a>
+                <h2>ПРОГРАМА КУРСУ</h2>
+                <div class="s6__content">
+                    <details>
+                        <summary>1 МОДУЛЬ</summary>
+                        <ul>Початок роботи в ТікТок:
+                            <li>реєстрація в ТікТок та оформлення профілю</li>
+                            <li>бізнес чи особистий профіль</li>
+                            <li>програми для роботи в ТікТок</li>
+                            <li>хештеги, візуал (заставки, музика, субтитри, програми для роботи в ТікТок)</li>
+                        </ul>
+                        <hr>
+                        <ul>Як працює ТікТок:
+                            <li>кількість відео та час викладання</li>
+                            <li>що впливає на рекомендації в ТікТок</li>
+                            <li>важливість коментарів та зростання підписників</li>
+                            <li>тіньовий бан (правила ТікТок, скарги, перезалив відео)</li>
+                            <li>зашальний час перегляду</li>
+                            <li>геолокація</li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>2 МОДУЛЬ</summary>
+                        <ul>Аналіз ЦА та статистика:
+                            <li>як робити аналіз ЦА</li>
+                            <li>статистика та як її аналізувати</li>
+                            <li>корисні додатки</li>
+                        </ul>
+                        <ul>Стратегія:
+                            <li>як будувати стратегію</li>
+                            <li>рубрики, якір</li>
+                        </ul>
+                        <ul>Контент:
+                            <li>який має бути контент (користь, емоція)</li>
+                            <li>типи відео в Тік Ток</li>
+                            <li>як вибирати формат для ніші</li>
+                            <li>як зняти відео на мільйон</li>
+                            <li>універсальна банка ідей</li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>3 МОДУЛЬ</summary>
+                        <ul>Як побудувати роботу з замовником:
+                            <li>як напрацювати кейцси</li>
+                            <li>як знайти перших клієнтів</li>
+                            <li>як вибрати "легкі" ніші для початківця</li>
+                            <li>як організувати роботу з замовником (де знайти моделей, яку апаратуру потрібно мати)</li>
+                        </ul>
+                    </details>
+                </div>
+            </section>
+        </main>
+<!-- Footer -->
+        <footer class="footer">
+            <svg class="footer__anim-bg_svg" version="1.1" 
+                xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMax slice">
+                          <defs>
+                              <linearGradient id="bg">
+                                  <stop offset="0%" style="stop-color:rgba(73, 51, 73, 0.06)"></stop>
+                                  <stop offset="50%" style="stop-color:rgba(94, 28, 90, 0.533)"></stop>
+                                  <stop offset="100%" style="stop-color:rgba(31, 29, 31, 0.2)"></stop>
+                              </linearGradient>
+                              <path id="wave" fill="url(#bg)" d="M-363.852,502.589c0,0,236.988-41.997,505.475,0
+                      s371.981,38.998,575.971,0s293.985-39.278,505.474,5.859s493.475,48.368,716.963-4.995v560.106H-363.852V502.589z" />
+                          </defs>
+                          <g>
+                              <use xlink:href='#wave' opacity=".3">
+                                  <animateTransform
+                            attributeName="transform"
+                            attributeType="XML"
+                            width="100%"
+                            type="translate"
+                            dur="10s"
+                            calcMode="spline"
+                            values="270 230; -334 180; 270 230"
+                            keyTimes="0; .5; 1"
+                            keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0"
+                            repeatCount="indefinite" />
+                              </use>
+                              <use xlink:href='#wave' opacity=".6">
+                                  <animateTransform
+                            attributeName="transform"
+                            attributeType="XML"
+                            width="100%"
+                            type="translate"
+                            dur="8s"
+                            calcMode="spline"
+                            values="-270 230;243 220;-270 230"
+                            keyTimes="0; .6; 1"
+                            keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0"
+                            repeatCount="indefinite" />
+                              </use>
+                              <use xlink:href='#wave' opacty=".9">
+                                  <animateTransform
+                            attributeName="transform"
+                            attributeType="XML"
+                            width="100%"
+                            type="translate"
+                            dur="6s"
+                            calcMode="spline"
+                            values="0 230;-140 200;0 230"
+                            keyTimes="0; .4; 1"
+                            keySplines="0.42, 0, 0.58, 1.0;0.42, 0, 0.58, 1.0"
+                            repeatCount="indefinite" />
+                              </use>
+                          </g>
+            </svg>
+            <span class="footer__site-name">brushnovskaya.com.ua</span>
+            <div class="footer__nav">
+                <a class="footer__nav_logo" href="">
+                    <span class="footer__nav_logo-pro">
+                          PRO</span>
+                    <span>TIKTOK</span>
+                </a>
+                <ul class="footer__menu-list">
+                    <li><a href="#About-course">ПРО КУРС</a></li>
+                    <li><a href="#MyWay">МІЙ ШЛЯХ</a></li>
+                    <li><a href="#Price">ПРАЙС</a></li>
+                    <li><a href="#Keys">КЕЙСИ</a></li>
+                </ul>
+                <div class="footer__menu-social">
+                    <a class="instagram-link" href="https://www.instagram.com/brushnovskaya/" target="_blank">
+                        <img class="inst-icon" src="./icons/instagram.svg" alt="instagram" title="Мій інстаграм">
+                    </a>
+                    <a class="telegram-link" href="https://t.me/brushnovskaya" target="_blank">
+                        <img class="tg-icon" src="./icons/telegram.svg" alt="telegram"
+                        title="Мій телеграм">
+                    </a>
+                </div>
+            </div>
+<!--             <div class="footer__pk">
+                <a href="#">Політика конфедиційності</a>
+                <span>|</span>
+                <a href="#">Публічна оферта</a>
+            </div>  -->
+        </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+    </div>
+    <script src="./js/Xscroll-close.js"></script>
+    <script src="./js/mobile-menu-open.js"></script>
+    <script src="./js/X.js"></script>
+    <script src="./js/sakura.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+@media (max-width: 1160px) {
+    .wrapper {
+        max-width: 11600px;
+        margin: 0 auto;
+    }
+
+//HEADER s1
+#sakura {
+    height: 980px;
+}
+//nav
+.header__nav {
+    font-size: 17px;
+    margin-bottom: 150px;
+    &_burger-menu {
+        width: 890px;
+    }
+}
+.header__nav_logo {
+    &-pro {
+        font-size: 20px;
+    }
+    span {
+        font-size: 20px;
+    }
+}
+.menu-social {
+    gap: 18px;
+    .instagram-link,
+    .telegram-link {
+        width: 28px;
+    }
+}
+//content
+.header__content {
+    margin-bottom: 1px;
+    gap: 90px;
+}
+.header__content_text {
+    &-protiktok {
+        font-size: 68px;
+    }
+    &-second {
+        font-size: 29px;
+    }
+    h1 {
+        margin-bottom: 30px;
+        line-height: 31px;
+    }
+    p {
+        width: 450px;
+    }
+    &-btn {
+        width: 235px;
+    }
+}
+.ask-me {
+    margin-right: 26px;
+}
+.header__content-photo {
+    .header__content-img {
+        height: 550px;
+    }
+}
+
+//SECTION 2
+.s2 {
+    gap: 40px;
+    margin-bottom: 80px;    
+}
+.s2__inner_top {
+    h2 {
+        font-size: 42px;
+        margin-bottom: 12px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+}
+.s2__inner_bottom  {
+    gap: 25px;
+    &-block1, &-block2, &-block3 {
+        gap: 10px;
+        img {
+            width: 85px;
+        }
+        h4 {
+            font-size: 19px;
+        }
+        p {
+            font-size: 17px;
+            line-height: 24px;
+        }
+    }
+    &-block2, &-block3 {
+        flex-shrink: 0.6;
+    }
+    &-block1 {
+        flex-shrink: 0.5;
+    }
+
+}
+
+//SECTION 3
+.s3 {
+    &__bg-2 {
+        top: -10px;
+        right: 0;
+        width: 800px;
+        height: 100%;
+        opacity: 10%;
+    }
+    &__bg-3, &__bg-4 {
+        display: none;
+    }
+    &__title {
+        font-size: 42px;
+    }
+}
+.s3__content {
+    gap: 40px;
+}
+.s3__content_numbers {
+    &-1 {
+        top: -255px;
+    }
+    &-2 {
+        top: -65px;
+    }
+    &-3 {
+        top: 139px;
+    }
+}
+.s3__content_text {
+    gap: 90px;
+    .inner__year {
+        font-size: 20px;
+    }
+    .inner__text {
+        font-size: 17px;
+    }
+}
+
+//SECTION 4
+.s4 {
+    padding: 0 10px;
+    &_bg {
+        opacity: 20%;
+    }
+    &__top-gradient, &__bottom-gradient {
+        height: 150px;
+    }
+}
+.s4__title {
+    margin-top: 40px;
+    h2 {
+        font-size: 42px;
+        &::before {
+            width: 85px;
+            height: 85px;
+            top: -27px;
+        }
+    }
+}
+.s4__content_keys {
+    gap: 42px;
+    &-salonkrasy, &-dino, &-fitness, &-nikaprofshop, &-vsivbrani, &-airtouch {
+        .salonkrsay-text, .dino-text, .fitness-text, .nikaprofshop-text, .vsivbrani-text, .airtouch-text {
+            top: -40px;
+            border-radius: 16px;
+            padding: 9px;
+            h4 {
+                margin-bottom: 8px;
+                font-size: 19px;
+            }
+            p {
+                padding-left: 8px;
+                width: 19vw;
+                br {
+                    display: none;
+                }
+            }
+        }
+        img {
+            width: 310px;
+            height: 330px;
+        }
+    }
+}
+
+//SECTION 5
+.s5 {
+    gap: 65px;
+    h2 {
+        font-size: 42px;
+    }
+}
+.s5__content {
+    gap: 30px;
+    &_advice {
+        h4 {
+            font-size: 24px;
+        }
+        ul {
+            margin-bottom: 55px;
+        }
+        .price-grn {
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+        a {
+            font-size: 19px;
+        }
+    }
+    &_mentoring {
+        h4 {
+            font-size: 24px;
+        }
+        ul {
+            margin-bottom: 95px;
+        }
+        .price-grn {
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+        &::after, &::before {
+            animation-duration: 12s;
+            animation-delay: 5s;
+        }
+        a {
+            font-size: 19px;
+        }
+    }
+    &_course {
+        h4 {
+            font-size: 24px;
+        }
+        ul {
+            margin-bottom: 107px;
+        }
+        .price-grn {
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+        a {
+            font-size: 19px;
+        }
+    }
+}
+.s5__content_price-block {
+    padding: 10px 10px;
+}
+
+//SECTION 6
+.s6 {
+    h2 {
+        font-size: 42px;
+    }
+}
+.s6__content {
+    details {
+        width: 65%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

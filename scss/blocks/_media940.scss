@@ -1,0 +1,365 @@
+@media (max-width: 940px) {
+    .wrapper {
+        max-width: 940px;
+        margin: 0 auto;
+    }
+//Header s1
+#sakura {
+    height: 870px;
+}
+.header__nav {
+    font-size: 15px;
+    margin-bottom: 120px;
+    &_burger-menu {
+        width: 100%;
+        gap: 65px;
+    }
+}
+.header__nav_logo {
+    gap: 4px;
+    &-pro {
+        font-size: 20px;
+    }
+    span {
+        font-size: 20px;
+    }
+}
+.menu-list {
+    gap: 29px;
+}
+.menu-social {
+    gap: 14px;
+    .instagram-link,
+    .telegram-link {
+        width: 28px;
+    }
+}
+.header__footer {
+    height: 121px;
+}
+//content
+.header__content {
+    margin-bottom: 101px;
+    gap: 45px;
+}
+.header__content_text {
+    &-protiktok {
+        font-size: 55px;
+    }
+    &-second {
+        .text-second_br-1 {
+            display: none;
+        }
+        .text-second_br-2 {
+            display: block;
+        }
+        font-size: 22px;
+    }
+    h1 {
+        margin-bottom: 25px;
+        line-height: 23px;
+    }
+    p {
+        width: 400px;
+        font-size: 16px;
+    }
+    &-start {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+    &-btn  {
+        width: 216px;
+        height: 50px;
+        font-size: 15px;
+    }
+}
+.ask-me {
+    width: 180px;
+    height: 35px;
+    padding: 0.5em 0.5em;
+}
+.header__content-photo {
+    .header__content-img {
+        height: 450px;
+    }
+}
+
+//SECTION 2
+.s2 {
+    gap: 35px;
+    margin-bottom: 80px;    
+}
+.s2__inner_top {
+    h2 {
+        font-size: 38px;
+        margin-bottom: 10px;
+    }
+    h3 {
+        font-size: 19px;
+    }
+}
+.s2__inner_bottom  {
+    gap: 23px;
+    &-block1, &-block2, &-block3 {
+        gap: 9px;
+        img {
+            width: 78px;
+        }
+        h4 {
+            font-size: 18px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 23px;
+        }
+    }
+}
+
+//SECTION 3
+.s3 {
+    &__bg-2 {
+        top: -160px;
+        left: 0px;
+        right: 0px;
+        width: 1200px;
+        opacity: 20%;
+    }
+    &__title {
+        font-size: 38px;
+    }
+}
+.s3__content_numbers {
+    &-1 {
+        top: -275px;
+    }
+}
+
+//SECTION 4
+.s4 {
+    &_bg {
+        opacity: 40%;
+    }
+}
+.s4__title {
+    margin-top: 35px;
+    h2 {
+        font-size: 38px;
+        &::before {
+            width: 70px;
+            height: 70px;
+            top: -30px;
+        }
+    }
+}
+.s4__content_keys {
+    gap: 25px;
+    row-gap: 50px;
+    &-salonkrasy, &-fitness, &-vsivbrani {
+        .salonkrsay-text, .fitness-text, .vsivbrani-text {
+            top: -45px;
+            right: 180px;
+            padding: 5px;
+            h4 {
+                margin-bottom: 5px;
+                font-size: 18px;
+            }
+            p {
+                font-size: 16px;
+                text-align: center;
+                line-height: 18px;
+                text-indent: 0px;
+            }
+        }
+        img {
+            width: 270px;
+            height: 290px;
+        }
+    }
+    &-dino, &-nikaprofshop, &-airtouch {
+        .dino-text, .nikaprofshop-text, .airtouch-text {
+            top: -45px;
+            left: 180px;
+            padding: 5px;
+            h4 {
+                margin-bottom: 5px;
+                font-size: 18px;
+            }
+            p {
+                font-size: 16px;
+                text-align: center;
+                line-height: 18px;
+                text-indent: 0px;
+            }
+        }
+        img {
+            width: 270px;
+            height: 290px;
+        }
+    }
+}
+
+//SECTION 5
+.s5 {
+    h2 {
+        font-size: 38px;
+    }
+}
+.s5__content {
+    gap: 64px;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    &_advice {
+        padding: 0 90px;
+        h4 {
+            font-size: 26px;
+            margin-bottom: 65px;
+        }
+        ul {
+            margin-bottom: 45px;
+        }
+        .price-grn {
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        a {
+            font-size: 19px;
+            margin-bottom: 15px;
+        }
+    }
+    &_mentoring {
+        h4 {
+            font-size: 26px;
+            margin-bottom: 65px;
+        }
+        ul {
+            margin-bottom: 65px;
+        }
+        .price-grn {
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        &::after, &::before {
+            animation-duration: 12s;
+            animation-delay: 4s;
+        }
+        @keyframes around {
+            0% {
+                clip: rect(0px, 630px, 30px, 0px);
+            } 
+            25% {
+                clip: rect(0px, 30px, 450px, 0);
+            }
+            50% {
+                clip: rect(630px, 430px, 630px, 0);
+            }
+            75% {
+                clip: rect(0px, 630px, 450px, 630px);
+            }
+            100% {
+                clip: rect(0px, 630px, 30px, 0px);
+            }
+        }
+        a {
+            font-size: 19px;
+            margin-bottom: 15px;
+        }
+    }
+    &_course {
+        padding: 0 90px;
+        h4 {
+            font-size: 26px;
+        }
+        ul {
+            margin-bottom: 87px;
+        }
+        .price-grn {
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        a {
+            font-size: 19px;
+            margin-bottom: 15px;
+        }
+    }
+}
+.s5__content_price-block {
+    width: 80%;
+    height: 100%;
+    a {
+        padding: 0.4em 3.8em;
+    }
+}
+
+//SECTION 6
+.s6 {
+    h2 {
+        font-size: 38px;
+    }
+}
+.s6__content {
+    details {
+        width: 70%;
+        ul {
+            padding: 5px 25px;
+            line-height: 24px;
+            li {
+                margin-top: 2px;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Footer
+    .footer {
+        &__anim-bg_svg {
+            height: 200px;
+        }
+        &__nav {
+            &_logo {
+                font-size: 20px;
+            }
+            gap: 70px;
+            margin-top: 40px;
+            margin-bottom: 70px;
+        }
+        &__menu-list {
+            gap: 27px;
+            font-weight: 500;
+        }
+        &__menu-social {
+            gap: 20px;
+        }
+        &__pk {
+            font-size: 12px;
+        }   
+    }
+}

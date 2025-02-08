@@ -1,0 +1,34 @@
+//FONTS
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&family=Russo+One&display=swap');
+
+html {
+    scroll-behavior: smooth;
+    height: 100%;
+}
+
+body {
+    background-color: $Bg-Color;
+    color: $Text-Color;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-optical-sizing: auto;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+}
+
+.wrapper {
+    background-color: $Bg-Color;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    flex-wrap: wrap;
+    max-width: 1600px;
+}
+main {
+    flex: 1 1 auto;
+    width: 100%;
+    background-color: $Bg-Color;
+}

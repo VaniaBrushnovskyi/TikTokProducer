@@ -1,0 +1,115 @@
+.s2 {
+    display: flex;
+    gap: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 0 15px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+.s2__inner_top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    h2 {
+        font-size: 48px;
+        margin-bottom: 15px;
+        span {
+            color: $Main-Color;
+        }
+    }
+    h3 {
+        font-size: 21px;
+        letter-spacing: 2px;
+        span {
+            color: $Main-Color;
+        }
+    }
+}
+.s2__inner_bottom {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex: 1 1 auto;
+    text-align: center;
+    word-spacing: 2px;
+    &-block1 {
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 1;
+        gap: 12px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 15px;
+        border-top-right-radius: 25px;
+        border-bottom-left-radius: 25px;
+        box-shadow: -7px 8px 15px $Second-Color;
+        img {
+            width: 90px;
+        }
+        h4 {
+            font-size: 20px;
+            letter-spacing: 2px;
+            line-height: 27px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 26px;
+        }
+        a {
+            color: #5d82f4;
+        }
+    }
+    &-block2 {
+        display: flex;
+        gap: 12px;
+        flex-grow: 1;
+        flex-shrink: 2;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 15px;
+        box-shadow: 0px 9px 8px $Second-Color;
+        img {
+            width: 90px;
+        }
+        h4 {
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 26px;
+        }
+    }
+    &-block3 {
+        display: flex;
+        gap: 12px;
+        flex-grow: 1;
+        flex-shrink: 1.6;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 15px;
+        border-top-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+        box-shadow: 7px 8px 15px $Second-Color;
+        img {
+            width: 90px;
+        }
+        h4 {
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 26px;
+        }
+    }
+}

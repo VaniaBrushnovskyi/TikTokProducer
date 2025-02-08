@@ -1,0 +1,84 @@
+@media (max-width: 1440px) {
+    .wrapper {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+
+//HEADER (s1)
+/* .header {
+    height: initial;
+} */
+
+//NAV
+.header__nav {
+    margin-bottom: 180px;
+    &_burger-menu {
+        width: 1110px;
+    }
+}
+.menu-list {
+    gap: 35px;
+}
+.menu-social {
+    gap: 20px;
+}
+
+//CONTENT
+.header__content {
+    margin-bottom: 68px;
+}
+.ask-me {
+    font-size: 17px;
+    width: 190px;
+}
+.header__footer {
+    width: 100vw;
+}
+
+//SECTION 3 
+.s3 {
+
+    video {
+        display: none;
+    }
+}
+
+//SECTION 5
+.s5__content {
+    gap: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//FOOTER 
+/* .footer {
+    width: 1440px;
+} */
+/* .footer__anim-bg_svg {
+
+} */
+
+
+}

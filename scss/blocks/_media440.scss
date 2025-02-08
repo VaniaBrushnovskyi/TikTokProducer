@@ -1,0 +1,247 @@
+@media (max-width: 440px) {
+    .wrapper {
+        max-width: 440px;
+    }
+//Header s1
+#sakura {
+    opacity: 78%;
+/*     height: 834px; */
+}
+.header__nav {
+    margin-top: 17px;
+    margin-bottom: 20px;
+}
+//content
+.header__content {
+    gap: 30px;
+    justify-content: start;
+}
+.burger-btn {
+    right: 15px;
+}
+.header__content_text {
+    margin-bottom: 70px;
+    &-protiktok {
+        font-size: 45px;
+    }
+    &-second {
+        .text-second_br-1 {
+            display: block;
+        }
+        .text-second_br-2 {
+            display: none;
+        }
+        font-size: 20px;
+    }
+    h1 {
+        margin-bottom: 15px;
+        line-height: 17px;
+    }
+    p {
+        width: 370px;
+        font-size: 16px;
+        line-height: 20px;
+        margin-bottom: 30px;
+    }
+    &-start {
+        gap: 15px;
+        font-size: 14px;
+    }
+    &-btn {
+        width: 225px;
+        height: 42px;
+        font-size: 14px;
+        letter-spacing: 3px;
+    }
+}
+.header__content-photo {
+    .header__content-img {
+        height: 370px;
+        order: 1;
+    }
+}
+.header__footer {
+    display: flex;
+    z-index: 1;
+    position: absolute;
+    bottom: 0px;
+    max-width: 100%;
+    height: 200px;
+    background: #bf0a8c2c;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(15, 15, 15, 0.455) 40%, rgba(28,28,28,1) 80%);
+}
+
+//SECTION 2 
+.s2 {
+    margin-top: 40px;
+}
+
+//SECTION 3
+.s3 {
+    padding: 0 10px;
+    gap: 50px;
+}
+.s3__content {
+    margin: 0 0 160px 38px;
+    gap: 15px;
+}
+.s3__content_numbers {
+    gap: 160px;
+    span {
+        width: 38px;
+        height: 38px;
+        font-size: 18px;
+    }
+    &-1 {
+        top: -265px;
+    }
+    &-2 {
+        top: -71px;
+    }
+    &-3 {
+        top: 120px;
+    }
+    hr {
+        top: -250px;
+        right: 18px;
+    }
+}
+.s3__content_text {
+    gap: 40px;
+    .inner__year  {
+        font-size: 17px;
+    }
+}
+
+//SECTION 4
+.s4__content_keys {
+    row-gap: 70px;
+    margin-top: 50px;
+    &-salonkrasy, &-fitness, &-vsivbrani {
+        .salonkrsay-text, .fitness-text, .vsivbrani-text {
+            top: -53px;
+            right: 40px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            box-shadow: 0px -6px 10px #bf0a8d;
+            p {
+                width: 65vw;
+                padding: 0;
+                font-size: 13.5px;
+                br {
+                    display: block;
+                }
+            }
+        }
+        .fitness-text {
+            top: -22px;
+        }
+        .vsivbrani-text {
+            top: -15px;
+        }
+        img {
+            width: 260px;
+            height: 290px; 
+        }
+    }
+    &-dino, &-nikaprofshop, &-airtouch {
+        .dino-text, .nikaprofshop-text, .airtouch-text {
+            top: -45px;
+            left: 40px;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+            box-shadow: 0px -6px 10px #bf0a8d;
+            p {
+                width: 65vw;
+                padding: 0;
+                font-size: 13.5px;
+                br {
+                    display: block;
+                }
+            }
+        }
+        .nikaprofshop-text {
+            top: -38px;
+        }
+        img {
+            width: 260px;
+            height: 290px;            
+        }
+    }
+}
+
+//SECTION 5
+.s5__content {
+    &_advice, &_mentoring, &_course {
+        padding: 0 15px;
+        h4 {
+            font-size: 22px;
+        }
+    }
+}
+.s5__content_price-block {
+    li {
+        margin-bottom: 15px;
+    }
+}
+
+//SECTION 6
+.s6__content {
+    details {
+        width: 90%;
+        ul {
+            padding-bottom: 15px;
+            line-height: 20px;
+            font-size: 20px;
+            li {
+                margin-top: 4px;
+                font-weight: 400;
+                font-size: 15.5px;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//FOOTER
+.footer {
+    justify-content: space-around;
+}
+.footer__nav {
+    display: flex;
+    gap: 50px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+    &_logo {
+        padding: 0;
+        font-size: 14px;
+    }
+    .footer__menu-list {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        text-transform: lowercase;
+    }
+    .footer__menu-social {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+}

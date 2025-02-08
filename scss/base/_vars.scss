@@ -1,0 +1,20 @@
+//Text-color
+$Bg-Color: #1c1c1c;
+$Main-Color: #bf0a8d;
+$Second-Color: #bf0a8c2c;
+
+//Colors
+$Text-Color: #fff;
+
+/* @mixin  */
+@mixin LinkHover {
+    transition: .4s ease;
+    &:hover {
+        background-color: #6d1d57;
+        box-shadow: none;
+    }
+    &:active {
+        background-color: #1c1c1c;
+        filter: blur(3px);
+    }
+}

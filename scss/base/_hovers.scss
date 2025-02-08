@@ -1,0 +1,118 @@
+@media (hover: hover) {
+/* @media (hover: none) {
+} */
+    @media (max-width: 590px) {
+        .menu-list {
+          li:hover {
+            transition: .4s ease;
+            transform: none;
+            background-color: $Main-Color;
+            padding: 0 30%;
+          }
+          li:active {
+            background-color: $Second-Color;
+          }
+        }  
+    }
+// HEADER SECTION 1
+.menu-list {
+/*     li:hover {
+        transition: .3s ease-in-out;
+        transform: scale(1.1);
+        background-color: $Main-Color;
+    } */
+    a:hover .hover-text {
+        width: 100%;
+        filter: drop-shadow(0 0 10px $Main-Color)
+      }
+    a:active {
+        transition: .3s ease-in-out;
+        filter: drop-shadow(0 0 1px #ffffff);
+        transform: scale(1.1);
+        
+    }
+    a:focus {
+        outline: none;
+    }
+}
+.menu-social {
+    a:hover {
+        transition: .4s ease-in-out;
+        transform: scale(1.4);
+        img {
+            filter: invert(0%);
+        }
+    }
+}
+.header__content {
+    a {
+        @include LinkHover;
+    }
+}
+
+//SECTION 2
+.s2__inner_bottom {
+
+    &-block1:hover,
+    &-block2:hover,
+    &-block3:hover {
+        box-shadow: 0px 0px 16px $Main-Color;
+        transition: .3s ease-in-out;
+        a:hover {
+            color: #00aaff;
+        }
+        a:active {
+            color: #3308a8;
+        }
+    }
+}
+//SECTION 5
+.s5__content_advice,
+.s5__content_mentoring,
+.s5__content_course {
+    a:hover::before {
+        width: 105%;
+    }
+       
+    a:hover {
+        color: #111;
+    }
+    a:active {
+        color: #fff;
+        background-color: #fff;
+        transform: scale(0.9);
+    }
+}
+//SECTION 6
+details:hover {
+    cursor: pointer;
+    transition: .4s ease;
+    summary:hover {
+        box-shadow: 0px 0px 10px $Main-Color;
+        transition: .4s ease;
+    }
+}
+//FOOTER
+.footer__menu-list {
+    li:hover {
+        transition: .3s ease-in-out;
+        transform: scale(1.2);
+    }
+    li:active {
+        background-color: #1c1c1c;
+    }
+    li:focus {
+        outline: none;
+    }
+}
+.footer__menu-social {
+    a:hover {
+        transition: .4s ease-in-out;
+        transform: scale(1.4);
+        img {
+            filter: invert(100%);
+        }
+    }
+}
+
+}

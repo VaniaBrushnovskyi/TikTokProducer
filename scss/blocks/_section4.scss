@@ -1,0 +1,270 @@
+.s4 {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    gap: 80px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 15px;
+    &__bg {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: -1;   
+        opacity: 15%; 
+    }
+    &__top-gradient {
+        z-index: -1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 200px;
+        background: #bf0a8c2c;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(15, 15, 15, 0.655) 53%, rgba(28,28,28,1) 100%);
+    }
+    &__bottom-gradient {
+        z-index: 1;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 200px;
+        background: #bf0a8c2c;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(15, 15, 15, 0.655) 53%, rgba(28,28,28,1) 100%);
+    }
+}
+.s4__title {
+    margin-top: 50px;
+    h2 {
+        font-size: 48px;
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            top: -24px;
+            left: -80px;
+            width: 100px;
+            height: 100px;
+            background-image: url(../../icons/Icon-KEYS.svg);
+        }
+    }
+}
+.s4__content {
+    margin-bottom: 150px;
+}
+.s4__content_keys {
+    display: grid;
+    gap: 75px;
+    &-salonkrasy {
+        position: relative;
+        grid-row-start: 1;
+        grid-row-end: 1;
+        .salonkrsay-text {
+            position: absolute;
+            top: -25px;
+            right: 260px;
+            background-color: $Bg-Color;
+            border-radius: 25px;
+            box-shadow: -4px -2px 8px $Main-Color;
+            padding: 15px;
+            h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                letter-spacing: 2px;
+                text-decoration: underline;
+                text-decoration-color: $Main-Color;
+            }
+            p {
+                padding-left: 10px;
+                width: 20vw;
+                font-size: 17px;
+                line-height: 23px;
+                font-family: cursive;
+                text-indent: 0.7rem;
+            }
+        }
+        img {
+            width: 340px;
+            height: 360px;
+            border-radius: 20px;
+            box-shadow: 4px 4px 10px $Main-Color;
+        }
+    }
+    &-dino {
+        position: relative;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        .dino-text {
+            position: absolute;
+            top: -25px;
+            left: 260px;
+            background-color: $Bg-Color;
+            padding: 15px;
+            border-radius: 25px;
+            box-shadow: 4px -2px 8px $Main-Color;
+            h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                letter-spacing: 2px;
+                text-decoration: underline;
+                text-decoration-color: $Main-Color;
+            }
+            p {
+                padding-left: 10px;
+                width: 20vw;
+                font-size: 17px;
+                line-height: 23px;
+                font-family: cursive;
+                text-indent: 0.7rem;
+            }
+        }
+        img {
+            width: 340px;
+            height: 360px;
+            border-radius: 20px;
+            box-shadow: -4px 4px 10px $Main-Color;
+        }
+    }
+    &-fitness {
+        position: relative;
+        grid-row-start: 2;
+        grid-row-end: 2;
+        .fitness-text {
+            position: absolute;
+            top: -25px;
+            right: 260px;
+            background-color: $Bg-Color;
+            padding: 15px;
+            border-radius: 25px;
+            box-shadow: -4px -2px 8px $Main-Color;
+            h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                letter-spacing: 2px;
+                text-decoration: underline;
+                text-decoration-color: $Main-Color;
+            }
+            p {
+                padding-left: 10px;
+                width: 20vw;
+                font-size: 17px;
+                line-height: 23px;
+                font-family: cursive;
+                text-indent: 0.7rem;
+            }
+        }
+        img {
+            width: 340px;
+            height: 360px;
+            border-radius: 20px;
+            box-shadow: 4px 4px 10px $Main-Color;
+        }
+    }
+    &-nikaprofshop {
+        position: relative;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        .nikaprofshop-text {
+            position: absolute;
+            top: -25px;
+            left: 260px;
+            background-color: $Bg-Color;
+            padding: 15px;
+            border-radius: 25px;
+            box-shadow: 4px -2px 8px $Main-Color;
+            h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                letter-spacing: 2px;
+                text-decoration: underline;
+                text-decoration-color: $Main-Color;
+            }
+            p {
+                padding-left: 10px;
+                width: 20vw;
+                font-size: 17px;
+                line-height: 23px;
+                font-family: cursive;
+                text-indent: 0.7rem;
+            }
+        }
+        img {
+            width: 340px;
+            height: 360px;
+            border-radius: 20px;
+            box-shadow: -4px 4px 10px $Main-Color;
+        }
+    }
+    &-vsivbrani {
+        position: relative;
+        grid-row-start: 3;
+        grid-row-end: 3;
+        .vsivbrani-text {
+            position: absolute;
+            top: -25px;
+            right: 260px;
+            background-color: $Bg-Color;
+            padding: 15px;
+            border-radius: 25px;
+            box-shadow: -4px -2px 8px $Main-Color;
+            h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                letter-spacing: 2px;
+                text-decoration: underline;
+                text-decoration-color: $Main-Color;
+            }
+            p {
+                padding-left: 10px;
+                width: 20vw;
+                font-size: 17px;
+                line-height: 23px;
+                font-family: cursive;
+                text-indent: 0.7rem;
+            }
+        }
+        img {
+            width: 340px;
+            height: 360px;
+            border-radius: 20px;
+            box-shadow: 4px 4px 10px $Main-Color;
+        }
+    }
+    &-airtouch {
+        position: relative;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        .airtouch-text {
+            position: absolute;
+            top: -25px;
+            left: 260px;
+            background-color: $Bg-Color;
+            padding: 15px;
+            border-radius: 25px;
+            box-shadow: 4px -2px 8px $Main-Color;
+            h4 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                letter-spacing: 2px;
+                text-decoration: underline;
+                text-decoration-color: $Main-Color;
+            }
+            p {
+                padding-left: 10px;
+                width: 20vw;
+                font-size: 17px;
+                line-height: 23px;
+                font-family: cursive;
+                text-indent: 0.7rem;
+            }
+        }
+        img {
+            width: 340px;
+            height: 360px;
+            border-radius: 20px;
+            box-shadow: -4px 4px 10px $Main-Color;
+        }
+    }
+}

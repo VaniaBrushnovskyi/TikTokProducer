@@ -1,0 +1,406 @@
+@media (max-width: 740px) {
+    .wrapper {
+        max-width: 740px;
+    }
+//HEADER s1
+#sakura {
+    width: 100%;
+    height: 690px;
+    opacity: 70%;
+}
+.header__nav {
+    &_burger-menu {
+        justify-content: space-evenly;
+        gap: 42px;
+    }
+    margin: 25px 0 80px 0;
+}
+.header__nav_logo {
+    flex-direction: column;
+    gap: 0px;
+    line-height: 17px;
+    padding: 0;
+    &-pro {
+        font-size: 20px;
+        animation: none;
+        color: $Main-Color;
+        font-weight: 600;
+        font-family: "Russo One";
+    }
+    span:last-of-type {
+        font-size: 14px;
+    }
+}
+.menu-list {
+/*     display: none; */
+    gap: 20px;
+    letter-spacing: 1px;
+}
+.menu-social {
+/*     display: none; */
+    gap: 8px;
+}
+//content
+.header__content {
+    margin-bottom: 11px;
+    gap: 0px;
+}
+.header__content_text {
+    &-protiktok {
+        font-size: 52px;
+    }
+    &-second {
+        .text-second_br-1 {
+            display: block;
+        }
+        .text-second_br-2 {
+            display: none;
+        }
+        font-size: 22px;
+    }
+    h1 {
+        margin-bottom: 25px;
+        line-height: 20px;
+    }
+    p {
+        width: 310px;
+        font-size: 16px;
+        margin-bottom: 35px;
+    }
+    &-start {
+        font-size: 16px;
+        line-height: 22px;
+        letter-spacing: 1px;
+    }
+    &-btn {
+        width: 206px;
+        height: 45px;
+        font-size: 15px;
+        letter-spacing: 1.3px;
+        word-spacing: 6px;
+    }
+}
+.ask-me {
+    font-size: 15px;
+    margin-right: 0;
+    width: 170px;
+}
+.header__content-photo  {
+    .header__content-img {
+        height: 420px;
+    }
+}
+
+//SECTION 2
+.s2 {
+    gap: 30px;
+    margin-bottom: 80px;    
+}
+.s2__inner_top {
+    h2 {
+        font-size: 35px;
+    }
+    h3 {
+        font-size: 19px;
+    }
+}
+.s2__inner_bottom  {
+    flex-direction: column;
+    gap: 23px;
+    &-block1, &-block2, &-block3 {
+        border-radius: 0px;
+        box-shadow: 0px 9px 8px $Second-Color;
+        gap: 9px;
+        img {
+            width: 70px;
+        }
+        h4 {
+            font-size: 18px;
+        }
+        p {
+            font-size: 15px;
+            line-height: 22.5px;
+        }
+    }
+}
+
+//SECTION 3
+.s3 {
+    padding: 0 15px;
+    gap: 50px;
+    &__title {
+        margin-top: 70px;
+        font-size: 35px;
+    }
+    &__bg-2 {
+        display: none;
+    }
+}
+.s3__content_numbers {
+    span {
+        width: 47px;
+        height: 47px;
+        font-size: 22px;
+    }
+    &-1 {
+        top: -270px;
+    }
+    &-2 {
+        top: -61px;
+    }
+    &-3 {
+        top: 139px;
+    }
+    hr {
+        right: 23px;
+        height: 410px;
+    }
+}
+.s3__content_text  {
+    gap: 45px;
+    .inner__year {
+        font-size: 19px;
+        margin-bottom: 3px;
+    }
+    .inner__text {
+        font-size: 16px;
+        font-style: italic;
+        padding-left: 15px;
+    }
+}
+
+//SECTION 4
+.s4 {
+    gap: 60px;
+    padding: 0 5px;
+    &__bg {
+        opacity: 35%;
+    }
+    &__top-gradient {
+        height: 100px;
+    } 
+    &__bottom-gradient {
+        height: 50px;
+    }
+}
+.s4__title {
+    margin-top: 20px;
+    h2 {
+        font-size: 35px;
+    }
+}
+.s4__content {
+    margin-bottom: 60px;
+}
+.s4__content_keys {
+    gap: 0;
+    row-gap: 48px;
+    &-salonkrasy {
+        grid-row-start: 1;
+        grid-row-end: 1;
+    }
+    &-dino {
+        grid-row-start: 2;
+        grid-row-end: 2;
+    }
+    &-fitness {
+        grid-row-start: 3;
+        grid-row-end: 3;
+    }
+    &-nikaprofshop {
+        grid-row-start: 4;
+        grid-row-end: 4;
+    }
+    &-vsivbrani {
+        grid-row-start: 5;
+        grid-row-end: 5;
+    }
+    &-airtouch {
+        grid-row-start: 6;
+        grid-row-end: 6;
+    }
+    &-salonkrasy, &-fitness, &-vsivbrani {
+        .salonkrsay-text, .fitness-text, .vsivbrani-text {
+            top: -40px;
+            right: 220px;
+            border-radius: 14px;
+            border-bottom-right-radius: 0px;
+            h4 {
+                font-size: 17.5px;
+                padding-left: 4px;
+            }
+            p {
+                padding: 3px;
+                width: 35vw;
+                font-size: 15px;
+                line-height: 17px;
+                text-align: left;
+            }
+        }
+        img {
+            width: 300px;
+            height: 320px;
+            box-shadow: 0px 6px 15px $Main-Color;
+        }
+    }
+    &-dino, &-nikaprofshop, &-airtouch {
+        .dino-text, .nikaprofshop-text, .airtouch-text {
+            top: -40px;
+            left: 220px;
+            border-radius: 14px;
+            border-bottom-left-radius: 0px;
+            h4 {
+                font-size: 17.5px;
+                padding-left: 4px;
+            }
+            p {
+                padding: 3px;
+                width: 35vw;
+                font-size: 15px;
+                line-height: 17px;
+                text-align: left;
+            }
+        }
+        img {
+            width: 300px;
+            height: 320px;
+            box-shadow: -0px 6px 15px $Main-Color;
+        }
+    }
+}
+
+//SECTION 5
+.s5 {
+    h2 {
+        font-size: 35px;
+    }
+}
+.s5__content {
+    gap: 50px;
+    padding: 0 10px;
+    &_advice {
+        padding: 0 40px;
+        h4 {
+            font-size: 23px;
+            margin-bottom: 60px;
+        }
+        ul {
+            margin-bottom: 45px;
+        }
+        .price-grn {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        a {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+    }
+    &_mentoring {
+        padding: 0 40px;
+        h4 {
+            font-size: 23px;
+            margin-bottom: 60px;
+        }
+        ul {
+            margin-bottom: 55px;
+        }
+        .price-grn {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        a {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+    }
+    &_course {
+        padding: 0 40px;
+        h4 {
+            font-size: 23px;
+            margin-bottom: 65px;
+        }
+        ul {
+            margin-bottom: 77px;
+        }
+        .price-grn {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        a {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+    }
+}
+.s5__content_price-block {
+    li {
+        font-size: 16px;
+        margin-bottom: 9px;
+    }
+}
+
+//SECTION 6
+.s6 {
+    h2 {
+        font-size: 35px;
+    }
+}
+.s6__content {
+    details {
+        width: 80%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//FOOTER 
+    .footer {
+        &__site-name {
+            order: 3;
+        }
+        &__nav {
+            order: 2;
+        }
+        &__pk {
+            order: 1;
+        }
+    }
+    .footer__nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        &_logo {
+            font-size: 16px;
+            gap: 0;
+            &-pro {
+                font-size: 19px;
+            }
+        }
+        .footer__menu-list {
+            gap: 20px;
+
+        }
+    }
+
+}
